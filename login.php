@@ -10,8 +10,21 @@
     <form action="" method="POST">
       ＩＤ:<input type="text" name="member_id" value="">
       <br>
-      パスワード:<input type="password" name="password" value="">
+      パスワード:<input type="password" name="password" id="password" value="">
       <br>
+      <input type="checkbox" id="password-check">パスワードを表示化する
+      <br>
+      <script>
+        const pwd = document.getElementById('password');
+        const pwdCheck = document.getElementById('password-check');
+        pwdCheck.addEventListener('change', function() {
+            if(pwdCheck.checked) {
+                pwd.setAttribute('type', 'text');
+            } else {
+                pwd.setAttribute('type', 'password');
+            }
+        }, false);
+        </script> 
       <input type="submit" name="submit" value="ログイン" class="link">
       <input type="reset" name="reset" value="取り消し" class="link">
     </form>
@@ -35,6 +48,7 @@
       $_SESSION['member_name'] = $row['member_name'];
       $_SESSION['member_id']=$row['member_id'];
       $_SESSION['birthday']=$row['birthday'];
+      $_SESSION['gender'] = $row['gender'];
       echo 'ログインされました<a href="main_sulezul.php">メイン画面へ</a>';
   } else{
       echo 'ログイン失敗';
